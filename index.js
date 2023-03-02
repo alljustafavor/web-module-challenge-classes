@@ -44,8 +44,31 @@ class Airplane {
 */
 
 class Person {
-  
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(food) {
+    if (this.stomach.length < 10){
+      return this.stomach.push(food)
+    }
+  }
+  poop() {
+    return this.stomach = [];
+  }
+  toString() {
+    return `${this.name},${this.age}`;
+  }
 }
+// created new Person with Name: Doug and Age: 17
+const person1 = new Person('Doug', 17);
+// Doug eats salad and food gets add to stomach arr
+person1.eat('Salad');
+// Poop will empty stomach to an empty arr
+person1.poop();
+
+
 
 /*
   TASK 2
@@ -62,10 +85,50 @@ class Person {
 */
 
 class Car {
-  
-}
+  constructor(model, milesPerGallon) {
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+    this.tank = 0
+    this.odometer = 0
+  }
 
+  fill(gallons) {
+    this.tank += gallons;
+  }
+
+  drive(distance) {
+    const maxDistance = this.tank * this.milesPerGallon;
+    if (distance <= maxDistance) {
+      this.odometer += distance;
+      this.tank -= distance / this.milesPerGallon;
+    } else {
+      this.odometer += maxDistance;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+  }
+}
+const myCar = new Car("Honda Civic", 30);
+
+// Fill up the car's tank with 10 gallons of fuel
+myCar.fill(10);
+
+// Drive the car for 100 miles
+myCar.drive(100);
+
+// Check the car's odometer and remaining fuel in the tank
+console.log(myCar.odometer); // 100
+console.log(myCar.tank); // 6.666666666666667
+
+// Drive the car for another 300 miles
+const result = myCar.drive(300);
+
+// Check the result of driving and the car's odometer and remaining fuel in the tank
+console.log(result); // "I ran out of fuel at 200 miles!"
+console.log(myCar.odometer); 
+console.log(myCar.tank); 
 /*
+
   TASK 3
     - Write a Lambdasian class.
     - Its constructor takes a single argument - an object with the following keys:
