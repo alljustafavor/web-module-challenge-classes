@@ -117,16 +117,16 @@ myCar.fill(10);
 myCar.drive(100);
 
 // Check the car's odometer and remaining fuel in the tank
-console.log(myCar.odometer); // 100
-console.log(myCar.tank); // 6.666666666666667
+console.log(myCar.odometer); // Output: 100
+console.log(myCar.tank); // Output: 6.666666666666667
 
 // Drive the car for another 300 miles
 const result = myCar.drive(300);
 
 // Check the result of driving and the car's odometer and remaining fuel in the tank
-console.log(result); // "I ran out of fuel at 200 miles!"
-console.log(myCar.odometer); 
-console.log(myCar.tank); 
+console.log(result); // Output: "I ran out of fuel at 300 miles!"
+console.log(myCar.odometer); // Output:
+console.log(myCar.tank); // Output:
 /*
 
   TASK 3
@@ -141,9 +141,26 @@ console.log(myCar.tank);
         + {name} and {location} of course come from the instance's own properties.
 */
 
-class Lambdasian {
-  
+class Lambdasian { 
+  constructor(prop){
+    this.name = prop.name;
+    this.age = prop.age;
+    this.location = prop.location
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+// Created New Lamda the the Name: Bob
+const lambda = new Lambdasian({name: 'Bob', age: 21, location: 'CA'});
+
+//Logged to Test if data populates object
+console.log(lambda); //Output: { name: 'Bob', age: 21, location: 'CA' }
+
+// Testing Speak function
+console.log(lambda.speak()); // Output: 'Hello my name is Bob, I am from CA'
+
+
 
 /*
   TASK 4
@@ -161,7 +178,22 @@ class Lambdasian {
 */
 
 class Instructor {
-
+  constructor(prop){
+    Lambdasian.call(this, prop)
+    this.name = prop.name;
+    this.age = prop.age;
+    this.location = prop.location;
+    this.specialty = prop.specialty;
+    this.favLanguages = [];
+    this.catchPhrase = prop.catchPhrase
+  }
+  demo(subject){
+    const subject = subject;
+    return `Today we are learning about ${subject}`;
+  }
+  grade(student){
+    
+  }
 }
 
 /*
