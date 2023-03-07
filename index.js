@@ -191,7 +191,7 @@ class Instructor extends Lambdasian{
     return `Today we are learning about ${subject}`;
   }
   grade(student, subject){
-    return `${student} receives a perfect score on ${subject}`
+    return student + `receives a perfect score on` + subject;
   }
 }
 
@@ -269,9 +269,35 @@ console.log(student.sprintChallenge('User Interface'));
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
 
-class ProjectManager {
-   
+class ProjectManager extends Instructor{
+  constructor(props){
+    super(props);
+    this.gradClassName = props.gradClassName;
+    this.favInstructor = props.favInstructor;
+  }
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!`;
+  }
+  debugsCode(student, subject) {
+    return `${this.name} debugs ${student.name}'s code on ${subject}`;
+  }
 }
+
+const projectManager = new ProjectManager({
+  name: 'Tony',
+  age: 41,
+  location: 'NY',
+  specialty: 'React',
+  favSubjects: ['JS', 'HTML', 'CSS'],
+  catchPhrase: 'Muffins',
+  previousBackground: 'Banking',
+  gradClassName: 'web223',
+  favInstructor: 'Henry'
+});
+
+console.log(projectManager.grade());
+console.log(projectManager.debugsCode('John', 'React'))
+console.log(projectManager.standUp('webTeamMeeting'))
 
 /*
   STRETCH PROBLEM (no tests!)
