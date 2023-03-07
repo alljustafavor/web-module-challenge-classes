@@ -177,24 +177,34 @@ console.log(lambda.speak()); // Output: 'Hello my name is Bob, I am from CA'
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
 
-class Instructor {
+class Instructor extends Lambdasian{
   constructor(prop){
-    Lambdasian.call(this, prop)
+    super(prop);
     this.name = prop.name;
     this.age = prop.age;
     this.location = prop.location;
     this.specialty = prop.specialty;
-    this.favLanguages = [];
+    this.favLanguage = prop.favLanguage;
     this.catchPhrase = prop.catchPhrase
   }
   demo(subject){
-    const subject = subject;
     return `Today we are learning about ${subject}`;
   }
-  grade(student){
-    
+  grade(student, subject){
+    return `${student} receives a perfect score on ${subject}`
   }
 }
+
+const teacher1 = new Instructor({
+  name: 'Marvin',
+  age: 43, location: 'CO',
+  specialty: 'React',
+  favLanguage: 'JS',
+  catchPhrase: 'Catch me if you can'
+});
+
+console.log(teacher1.speak());
+console.log(teacher1)
 
 /*
   TASK 5
@@ -212,10 +222,39 @@ class Instructor {
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
 
-class Student {
-   
+class Student extends Lambdasian {
+  constructor(props) {
+    super(props);
+    this.previousBackground = props.previousBackground;
+    this.className = props.className;
+    this.favSubjects = props.favSubjects;
+  }
+  listSubjects() {
+    return `Loving ${this.favSubjects.join(', ')}!`;
+  }
+  PRAssignment(subject){
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+  sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
 }
 
+const student = new Student({
+  name: 'John',
+  age: 24,
+  location: 'KY',
+  specialty: 'React',
+  favSubjects: ['JS', 'HTML', 'CSS'],
+  catchPhrase: 'Catch me if you can',
+  previousBackground: 'Logistics',
+  className: 'web50'
+});
+console.log(student.PRAssignment());
+console.log(student);
+console.log(student.listSubjects());
+console.log(student);
+console.log(student.sprintChallenge('User Interface'));
 /*
   TASK 6
     - Write a ProjectManager class extending Instructor.
